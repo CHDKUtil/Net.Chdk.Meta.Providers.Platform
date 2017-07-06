@@ -1,6 +1,5 @@
 ﻿using Net.Chdk.Meta.Generators.Platform;
 using Net.Chdk.Meta.Model.CameraModel;
-using Net.Chdk.Meta.Providers.CameraModel;
 using System;
 using System.Collections.Generic;
 using System.IO;
