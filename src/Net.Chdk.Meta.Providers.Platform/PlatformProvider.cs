@@ -20,7 +20,7 @@ namespace Net.Chdk.Meta.Providers.Platform
         {
             new KeyValuePair<string, string>
             (
-                 $"{0x3380000}",
+                 "0x3380000",
                  "PowerShot N Facebook"
             )
         };
