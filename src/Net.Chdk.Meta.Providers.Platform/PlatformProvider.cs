@@ -32,17 +32,20 @@ namespace Net.Chdk.Meta.Providers.Platform
             PlatformGenerator = platformGenerator;
         }
 
-        public IDictionary<string, PlatformData> GetPlatforms(Stream stream)
+        public IDictionary<string, PlatformData> GetPlatforms(string path)
         {
-            var keys = DoGetPlatforms(stream);
-            var values = keys
-                .Where(k => !RemovedValues.Contains(k.Value))
-                .Concat(AddedKeys);
+            using (var reader = File.OpenText(path))
+            {
+                var keys = DoGetPlatforms(reader);
+                var values = keys
+                    .Where(k => !RemovedValues.Contains(k.Value))
+                    .Concat(AddedKeys);
 
-            return GetPlatforms(values);
+                return GetPlatforms(values);
+            }
         }
 
-        protected abstract IEnumerable<KeyValuePair<string, string>> DoGetPlatforms(Stream stream);
+        protected abstract IEnumerable<KeyValuePair<string, string>> DoGetPlatforms(TextReader reader);
 
         private IDictionary<string, PlatformData> GetPlatforms(IEnumerable<KeyValuePair<string, string>> values)
         {
