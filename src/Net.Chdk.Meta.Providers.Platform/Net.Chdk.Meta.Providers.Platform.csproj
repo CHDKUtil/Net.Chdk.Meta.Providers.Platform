@@ -35,6 +35,9 @@
     <Reference Include="Net.Chdk.Core, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\..\packages\Net.Chdk.Core.0.2.0-alpha\lib\netstandard1.0\Net.Chdk.Core.dll</HintPath>
     </Reference>
+    <Reference Include="Net.Chdk.Meta.Model.Platform, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\Net.Chdk.Meta.Model.Platform.0.1.0-alpha\lib\netstandard1.0\Net.Chdk.Meta.Model.Platform.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.Composition" />
     <Reference Include="System.Core" />
@@ -59,10 +62,6 @@
     <ProjectReference Include="..\..\..\Net.Chdk.Meta.Generators.Platform.Core\src\Net.Chdk.Meta.Generators.Platform.Core\Net.Chdk.Meta.Generators.Platform.Core.csproj">
       <Project>{229C4264-4206-427E-B912-B7649E5485BF}</Project>
       <Name>Net.Chdk.Meta.Generators.Platform.Core</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\Net.Chdk.Meta.Model.Platform\src\Net.Chdk.Meta.Model.Platform\Net.Chdk.Meta.Model.Platform.csproj">
-      <Project>{00470B0D-065D-48C2-B861-BBAEE7E5C1A4}</Project>
-      <Name>Net.Chdk.Meta.Model.Platform</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\..\Net.Chdk.Meta.Providers.Platform.Core\src\Net.Chdk.Meta.Providers.Platform.Core\Net.Chdk.Meta.Providers.Platform.Core.csproj">
       <Project>{3794f230-39b2-4486-bf06-b528f20e54b2}</Project>
