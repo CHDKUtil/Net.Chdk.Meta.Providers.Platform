@@ -7,7 +7,7 @@ using System.Linq;
 
 namespace Net.Chdk.Meta.Providers.Platform
 {
-    public abstract class PlatformProvider : IPlatformProvider
+    sealed class PlatformProvider : IPlatformProvider
     {
         private static readonly string[] RemovedValues =
         {
@@ -25,18 +25,24 @@ namespace Net.Chdk.Meta.Providers.Platform
             )
         };
 
+        private IEnumerable<IInnerPlatformProvider> InnerProviders { get; }
         private IPlatformGenerator PlatformGenerator { get; }
 
-        protected PlatformProvider(IPlatformGenerator platformGenerator)
+        public PlatformProvider(IEnumerable<IInnerPlatformProvider> innerProviders, IPlatformGenerator platformGenerator)
         {
+            InnerProviders = innerProviders;
             PlatformGenerator = platformGenerator;
         }
 
         public IDictionary<string, PlatformData> GetPlatforms(string path)
         {
+            var ext = Path.GetExtension(path);
+            var provider = InnerProviders.SingleOrDefault(p => p.Extension.Equals(ext, StringComparison.OrdinalIgnoreCase));
+            if (provider == null)
+                throw new InvalidOperationException($"Unknown platform extension: {ext}");
             using (var reader = File.OpenText(path))
             {
-                var keys = DoGetPlatforms(reader);
+                var keys = provider.GetPlatforms(reader);
                 var values = keys
                     .Where(k => !RemovedValues.Contains(k.Value))
                     .Concat(AddedKeys);
@@ -44,8 +50,6 @@ namespace Net.Chdk.Meta.Providers.Platform
                 return GetPlatforms(values);
             }
         }
-
-        protected abstract IEnumerable<KeyValuePair<string, string>> DoGetPlatforms(TextReader reader);
 
         private IDictionary<string, PlatformData> GetPlatforms(IEnumerable<KeyValuePair<string, string>> values)
         {
