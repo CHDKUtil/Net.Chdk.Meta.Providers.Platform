@@ -67,6 +67,14 @@
       <Project>{229C4264-4206-427E-B912-B7649E5485BF}</Project>
       <Name>Net.Chdk.Meta.Generators.Platform.Core</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\..\Net.Chdk.Meta.Providers.Base\src\Net.Chdk.Meta.Providers.Base\Net.Chdk.Meta.Providers.Base.csproj">
+      <Project>{490d76d3-5efc-41fe-8ad9-febc4354f2f7}</Project>
+      <Name>Net.Chdk.Meta.Providers.Base</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\Net.Chdk.Meta.Providers.Core\src\Net.Chdk.Meta.Providers.Core\Net.Chdk.Meta.Providers.Core.csproj">
+      <Project>{a336d62c-4caf-4b19-9602-8ce0e51b4eb4}</Project>
+      <Name>Net.Chdk.Meta.Providers.Core</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\..\Net.Chdk.Meta.Providers.Platform.Core\src\Net.Chdk.Meta.Providers.Platform.Core\Net.Chdk.Meta.Providers.Platform.Core.csproj">
       <Project>{3794f230-39b2-4486-bf06-b528f20e54b2}</Project>
       <Name>Net.Chdk.Meta.Providers.Platform.Core</Name>
