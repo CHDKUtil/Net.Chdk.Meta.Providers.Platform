@@ -9,12 +9,7 @@ namespace Net.Chdk.Meta.Providers.Platform
 {
     sealed class PlatformProvider : SingleExtensionProvider<IInnerPlatformProvider>, IPlatformProvider
     {
-        private static readonly string[] RemovedValues =
-        {
-            "EOS D30",
-            "PowerShot S300 / Digital IXUS 300 / IXY Digital 300",
-            "PowerShot S500 / Digital IXUS 500 / IXY Digital 500"
-        };
+        private const int MinModelId = 0x1540000;
 
         private static readonly KeyValuePair<string, string>[] AddedKeys =
         {
@@ -42,11 +37,21 @@ namespace Net.Chdk.Meta.Providers.Platform
             {
                 var keys = provider.GetPlatforms(reader);
                 var values = keys
-                    .Where(k => !RemovedValues.Contains(k.Value))
+                    .Where(IsIncluded)
                     .Concat(AddedKeys);
 
                 return GetPlatforms(values);
             }
+        }
+
+        private static bool IsIncluded(KeyValuePair<string, string> kvp)
+        {
+            return GetModelId(kvp.Key) >= MinModelId;
+        }
+
+        private static uint GetModelId(string id)
+        {
+            return Convert.ToUInt32(id, 16);
         }
 
         private IDictionary<string, PlatformData> GetPlatforms(IEnumerable<KeyValuePair<string, string>> values)
