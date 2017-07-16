@@ -99,7 +99,7 @@ namespace Net.Chdk.Meta.Providers.Platform
 
             return new CameraModel
             {
-                Names = names.Select(n => $"Canon {n}").ToArray(),
+                Names = GetNames(names).ToArray(),
                 Platform = platform
             };
         }
@@ -107,6 +107,23 @@ namespace Net.Chdk.Meta.Providers.Platform
         private string GetPlatform(string[] names)
         {
             return PlatformGenerator.GetPlatform(names);
+        }
+
+        private static IEnumerable<string> GetNames(string[] names)
+        {
+            return names[0].StartsWith("EOS ")
+                ? names.Select(PrependCanonEos)
+                : names.Select(PrependCanon);
+        }
+
+        private static string PrependCanon(string name)
+        {
+            return $"Canon {name}";
+        }
+
+        private static string PrependCanonEos(string name)
+        {
+            return $"Canon EOS {name.TrimStart("EOS ")}";
         }
 
         private static IEnumerable<string> GetModels(string value)
