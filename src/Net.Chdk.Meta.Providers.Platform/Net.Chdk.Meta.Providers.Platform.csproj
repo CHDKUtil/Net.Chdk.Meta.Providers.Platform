@@ -7,7 +7,7 @@
   </PropertyGroup>
 
   <PropertyGroup>
-    <Version>0.3.0</Version>
+    <Version>0.4.0</Version>
     <Product>CHIMP</Product>
     <Authors>Dmitry Shechtman</Authors>
     <Copyright>Copyright © 2017 Dmitry Shechtman</Copyright>
@@ -17,8 +17,8 @@
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
     <Title>Net.Chdk.Meta.Providers.Platform</Title>
     <PackageVersion>$(Version)-alpha</PackageVersion>
+    <PackageLicenseExpression>GPL-2.0-or-later</PackageLicenseExpression>
     <PackageIconUrl>https://raw.githubusercontent.com/CHDKUtil/CHIMP/master/tiny.png</PackageIconUrl>
-    <PackageLicenseUrl>https://raw.githubusercontent.com/CHDKUtil/Net.Chdk.Meta.Providers.Platform/master/LICENSE</PackageLicenseUrl>
     <PackageProjectUrl>https://github.com/CHDKUtil/Net.Chdk.Meta.Providers.Platform</PackageProjectUrl>
     <RepositoryUrl>https://github.com/CHDKUtil/Net.Chdk.Meta.Providers.Platform</RepositoryUrl>
     <PackageTags>chimp meta provider platform</PackageTags>
@@ -36,10 +36,10 @@
 
   <ItemGroup>
     <PackageReference Include="microsoft.extensions.dependencyinjection.abstractions" Version="1.1.1" />
-    <PackageReference Include="Net.Chdk.Core" Version="0.3.0-alpha" />
-    <PackageReference Include="Net.Chdk.Meta.Generators.Platform.Core" Version="0.2.0-alpha" />
-    <PackageReference Include="Net.Chdk.Meta.Providers.Base" Version="0.3.0-alpha" />
-    <PackageReference Include="Net.Chdk.Meta.Providers.Platform.Core" Version="0.3.0-alpha" />
+    <PackageReference Include="Net.Chdk.Core" Version="0.4.0-alpha" />
+    <PackageReference Include="Net.Chdk.Meta.Generators.Platform.Core" Version="0.4.0-alpha" />
+    <PackageReference Include="Net.Chdk.Meta.Providers.Base" Version="0.4.0-alpha" />
+    <PackageReference Include="Net.Chdk.Meta.Providers.Platform.Core" Version="0.4.0-alpha" />
   </ItemGroup>
 
 </Project>
