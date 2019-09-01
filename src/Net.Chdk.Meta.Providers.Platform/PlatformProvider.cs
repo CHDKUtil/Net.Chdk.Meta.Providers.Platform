@@ -9,17 +9,6 @@ namespace Net.Chdk.Meta.Providers.Platform
 {
     sealed class PlatformProvider : SingleExtensionProvider<IInnerPlatformProvider>, IPlatformProvider
     {
-        private const int MinModelId = 0x1540000;
-
-        private static readonly KeyValuePair<string, string>[] AddedKeys =
-        {
-            new KeyValuePair<string, string>
-            (
-                 "0x3380000",
-                 "PowerShot N Facebook"
-            )
-        };
-
         private IPlatformGenerator PlatformGenerator { get; }
 
         public PlatformProvider(IEnumerable<IInnerPlatformProvider> innerProviders, IPlatformGenerator platformGenerator)
@@ -36,22 +25,8 @@ namespace Net.Chdk.Meta.Providers.Platform
             using (var reader = File.OpenText(path))
             {
                 var keys = provider.GetPlatforms(reader);
-                var values = keys
-                    .Where(IsIncluded)
-                    .Concat(AddedKeys);
-
-                return GetPlatforms(values);
+                return GetPlatforms(keys);
             }
-        }
-
-        private static bool IsIncluded(KeyValuePair<string, string> kvp)
-        {
-            return GetModelId(kvp.Key) >= MinModelId;
-        }
-
-        private static uint GetModelId(string id)
-        {
-            return Convert.ToUInt32(id, 16);
         }
 
         private IDictionary<string, PlatformData> GetPlatforms(IEnumerable<KeyValuePair<string, string>> values)
